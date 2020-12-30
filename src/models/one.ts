@@ -1,4 +1,5 @@
-import { Model } from "../dva";
+import { Effect } from "../dva";
+import { Reducer } from "redux";
 
 //定义state 结构
 export interface commonState {
@@ -6,22 +7,45 @@ export interface commonState {
   txt2: string;
 }
 
-export default {
+interface oneType {
+  namespace: string;
+  state: commonState;
+  reducers: {
+    setState: Reducer<any, any>;
+    clearState: Reducer<any, any>;
+  };
+  effects: {
+    initState: Effect;
+  };
+}
+
+const one: oneType = {
   namespace: "one",
   state: {
     txt: "1",
     txt2: "2",
-  } as commonState,
-
-  effects: {},
+  },
 
   reducers: {
-    //state 之前的 action 传进来的
-    default(state: commonState, action: any) {
+    setState(state, action) {
+      const { payload } = action;
+      return Object.assign({}, state, payload);
+    },
+    clearState(state) {
       return {
         ...state,
-        ...action.payload,
       };
     },
   },
-} as Model;
+
+  effects: {
+    *initState({ payload }: any, { put }: any) {
+      yield put({
+        type: "setState",
+        payload: { txt: payload.txt },
+      });
+    },
+  },
+};
+
+export default one;
