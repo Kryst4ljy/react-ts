@@ -1,12 +1,12 @@
 import React from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import proHistory from "../dva/history";
+import { createBrowserHistory } from "history";
 import dynamic from "../dva/dynamic";
 import { routes, RouteConf } from "./config";
 
 const RouterConfig = ({ app }: any) => {
   return (
-    <Router history={proHistory}>
+    <Router history={createBrowserHistory()}>
       <Switch>
         {routes.map((value: RouteConf, key: number) => (
           <Route

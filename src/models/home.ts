@@ -1,15 +1,13 @@
-import { Effect } from "../dva";
+import { Effect } from "dva";
 import { Reducer } from "redux";
 
-//定义state 结构
-export interface commonState {
-  txt: string;
-  txt2: string;
+interface stateType {
+  name: String;
 }
 
-interface oneType {
-  namespace: string;
-  state: commonState;
+interface options {
+  namespace: String;
+  state: stateType;
   reducers: {
     setState: Reducer<any, any>;
     clearState: Reducer<any, any>;
@@ -19,11 +17,11 @@ interface oneType {
   };
 }
 
-const one: oneType = {
-  namespace: "one",
+const home: options = {
+  namespace: "home",
+
   state: {
-    txt: "1",
-    txt2: "2",
+    name: "",
   },
 
   reducers: {
@@ -42,10 +40,10 @@ const one: oneType = {
     *initState({ payload }: any, { put }: any) {
       yield put({
         type: "setState",
-        payload: { txt: payload.txt },
+        payload: { name: payload.name },
       });
     },
   },
 };
 
-export default one;
+export default home;

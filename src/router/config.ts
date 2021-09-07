@@ -8,8 +8,8 @@ export interface RouteConf {
 
 export const routes: RouteConf[] = [
   {
-    path: "/one",
-    component: () => import("../pages/one"),
-    models: () => [import("../models/one")],
+    path: "/home",
+    component: () => import("../page/home"),
+    models: () => [import("../models/home")],
   },
 ];

@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import { dva } from "./dva";
 import Router from "./router/index";
 
@@ -9,7 +8,7 @@ import Router from "./router/index";
  */
 const app = dva({
   initialState: {},
-  models: [], //公共的model 在这里引入
+  models: [], // 公共的model 在这里引入
   extraReducers: {},
   onError(e: any) {
     console.error("onError", e);

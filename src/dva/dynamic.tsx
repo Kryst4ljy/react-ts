@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Model } from "./index";
+import { Model } from "dva";
 
 //缓存已注册的module
 interface Cached {
